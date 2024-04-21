@@ -16,17 +16,17 @@ Optional: You can also modify the script to customize it according to your speci
 # Configuration Explanation:
 1. Input Traffic Configuration:
 
-- Configure rules for allowing specific incoming traffic based on source IP, destination IP, protocol, and port.
+  - Configure rules for allowing specific incoming traffic based on source IP, destination IP, protocol, and port.
 
 2. Forward Traffic Configuration:
 
-- Set up rules for forwarding traffic between specified source and destination IPs and ports.
+  - Set up rules for forwarding traffic between specified source and destination IPs and ports.
 
-- Choose the direction of traffic flow: from source to destination, from destination to source, or in both directions.
+  - Choose the direction of traffic flow: from source to destination, from destination to source, or in both directions.
 
 3.  Output Traffic Configuration:
 
-- Configure rules for allowing outbound traffic to specific destination IPs, protocols, and ports.
+  - Configure rules for allowing outbound traffic to specific destination IPs, protocols, and ports.
 
 4. SNAT Traffic Configuration:
 
