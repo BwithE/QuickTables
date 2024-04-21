@@ -30,31 +30,31 @@ Optional: You can also modify the script to customize it according to your speci
 
 4. SNAT Traffic Configuration:
 
-- Set up Source Network Address Translation (SNAT) rules for outgoing traffic.
+  - Set up Source Network Address Translation (SNAT) rules for outgoing traffic.
 
-- Specify source IP, destination IP, protocol, port, and the SNAT IP (the machine's IP that can reach the destination).
+  - Specify source IP, destination IP, protocol, port, and the SNAT IP (the machine's IP that can reach the destination).
 
 5. DNAT Traffic Configuration:
 
-- Configure Destination Network Address Translation (DNAT) rules for incoming traffic.
+  - Configure Destination Network Address Translation (DNAT) rules for incoming traffic.
 
-- Specify source IP, destination IP, port, forwarding destination IP, and forwarding port.
+  - Specify source IP, destination IP, port, forwarding destination IP, and forwarding port.
 
-- This is useful for port forwarding scenarios, where incoming traffic to a specific port is forwarded to another internal IP and port.
+  - This is useful for port forwarding scenarios, where incoming traffic to a specific port is forwarded to another internal IP and port.
 
 6. Default Firewall Rules:
 
-- After configuring specific rules, default firewall rules are set:
+  - After configuring specific rules, default firewall rules are set:
 
-- Allow all loopback traffic.
+  - Allow all loopback traffic.
 
-- Drop all other incoming and forwarded traffic.
+  - Drop all other incoming and forwarded traffic.
 
 7. Confirmation and Reset:
 
-- After configuring rules, the script prompts the user to keep or reset the settings.
+  - After configuring rules, the script prompts the user to keep or reset the settings.
 
-- If no action is taken within 10 seconds, the script automatically resets the firewall rules to allow all incoming and forwarded traffic.
+  - If no action is taken within 10 seconds, the script automatically resets the firewall rules to allow all incoming and forwarded traffic.
 
 # Note:
 
