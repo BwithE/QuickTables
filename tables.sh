@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo "##############################################"
+echo "FLUSHING FIREWALL"
+# Resetting the firewall rules
+iptables -A INPUT -j ACCEPT  # Allow all incoming traffic
+iptables -A FORWARD -j ACCEPT # Allow all forwarded traffic
+iptables -t nat -F # flush all nat rules
+iptables -F  # Flush all rules
+
 while [ true ]
 do
 echo "##############################################"
@@ -129,13 +137,18 @@ iptables -P INPUT -j DROP           # Drop all other incoming traffic
 iptables -P FORWARD -j DROP         # Drop all other forwarded traffic
 
 # Inform the user about keeping or resetting settings
+echo "##############################################"
 echo "Press 'CTRL+C' to keep settings."
 echo "Or wait 10 seconds for reset..."
 sleep 10
 
 # Resetting the firewall rules
-iptables -F  # Flush all rules
 iptables -A INPUT -j ACCEPT  # Allow all incoming traffic
 iptables -A FORWARD -j ACCEPT # Allow all forwarded traffic
+iptables -t nat -F # flush all nat rules
+iptables -F  # Flush all rules
+echo "##############################################"
+echo "FIREWALL HAS BEEN FLUSHED"
+echo "##############################################"
 
 
