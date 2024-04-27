@@ -93,8 +93,8 @@ fi
 
 # Setting up default firewall rules
 iptables -A INPUT -i lo -j ACCEPT  # Allow loopback traffic
-iptables -A INPUT -j DROP           # Drop all other incoming traffic
-iptables -A FORWARD -j DROP         # Drop all forwarded traffic
+iptables -P INPUT -j DROP           # Drop all other incoming traffic
+iptables -P FORWARD -j DROP         # Drop all other forwarded traffic
 
 # Inform the user about keeping or resetting settings
 echo "Press 'CTRL+C' to keep settings."
