@@ -1,5 +1,8 @@
 #!/bin/bash
 
+while [ true ]
+do
+echo "##############################################"
 # Prompt the user to choose the type of traffic
 read -p "Select the type of traffic 
 1. Input
@@ -7,13 +10,18 @@ read -p "Select the type of traffic
 3. Output
 4. SNAT
 5. DNAT
+6. EXIT
 " table
 
 # Input traffic configuration
 if [ "$table" = "1" ]; then
+    echo "##############################################"
     read -p "Enter Source IP: " src
+    echo "##############################################"
     read -p "Enter Destination IP: " dest
+    echo "##############################################"
     read -p "Enter Protocol (tcp/udp): " proto
+    echo "##############################################"
     read -p "Enter Port: " port
 
     # Add iptables rule to allow incoming traffic from specific source IP to specific destination IP, protocol, and port
@@ -23,10 +31,15 @@ fi
 
 # Forward traffic configuration
 if [ "$table" = "2" ]; then
+    echo "##############################################"
     read -p "Enter Source IP: " src
+    echo "##############################################"
     read -p "Enter Destination IP: " dest
+    echo "##############################################"
     read -p "Enter Protocol: " proto
+    echo "##############################################"
     read -p "Enter Port: " port
+    echo "##############################################"
     read -p "Which way do you want traffic to travel? 
     1. Src2Dst
     2. Dst2Src
@@ -52,8 +65,11 @@ fi
 
 # Output traffic configuration
 if [ "$table" = "3" ]; then
+    echo "##############################################"
     read -p "Enter Destination IP: " dest
+    echo "##############################################"
     read -p "Enter Protocol: " proto
+    echo "##############################################"
     read -p "Enter Port: " port
     # Allow outbound SSH traffic to the specified destination IP
     iptables -A OUTPUT -p "$proto" -d "$dest" --dport "$port" -j ACCEPT
@@ -61,10 +77,15 @@ fi
 
 # SNAT traffic configuration
 if [ "$table" = "4" ]; then
+    echo "##############################################"
     read -p "Enter Source IP: " src
+    echo "##############################################"
     read -p "Enter Destination IP: " dest
+    echo "##############################################"
     read -p "Enter Protocol: " proto
+    echo "##############################################"
     read -p "Enter Port: " port
+    echo "##############################################"
     read -p "Enter SNAT IP(THIS MACHINES IP THAT CAN REACH THE DEST IP): " snat_ip
 
     # Assuming you want to perform SNAT for outgoing traffic from a private network
@@ -73,10 +94,15 @@ fi
 
 # DNAT traffic configuration
 if [ "$table" = "5" ]; then
+    echo "##############################################"
     read -p "Source IP: " src
+    echo "##############################################"
     read -p "Destination IP: " dst
+    echo "##############################################"
     read -p "Port: " port
+    echo "##############################################"
     read -p "Forwarding Destination IP: " fdest
+    echo "##############################################"
     read -p "Forwarding Port: " fport
 
     # Add DNAT rule to forward incoming traffic to the internal destination IP and port
@@ -89,7 +115,13 @@ if [ "$table" = "5" ]; then
     iptables -A FORWARD -p tcp -s "$fdest" -d "$src" --sport "$fport" -j ACCEPT
 fi
 
+if [ "$table" = "6" ]; then
+    echo "##############################################"
+    echo "APPLYING DROP POLICIES"
+    break
+fi
 
+done
 
 # Setting up default firewall rules
 iptables -A INPUT -i lo -j ACCEPT  # Allow loopback traffic
@@ -105,3 +137,5 @@ sleep 10
 iptables -F  # Flush all rules
 iptables -A INPUT -j ACCEPT  # Allow all incoming traffic
 iptables -A FORWARD -j ACCEPT # Allow all forwarded traffic
+
+
