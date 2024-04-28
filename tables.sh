@@ -28,8 +28,9 @@ read -p "Select the type of traffic
 3. Output
 4. SNAT
 5. DNAT
-6. EXIT
-" table
+6. Save iptables
+7. EXIT
+Enter number: " table
 
 # Input traffic configuration
 if [ "$table" = "1" ]; then
@@ -134,6 +135,12 @@ if [ "$table" = "5" ]; then
 fi
 
 if [ "$table" = "6" ]; then
+    echo "##############################################"
+    echo "SAVING IPTABLES"
+    iptables-save > /etc/iptables/quicktables.rules
+fi
+
+if [ "$table" = "7" ]; then
     echo "##############################################"
     echo "APPLYING DROP POLICIES"
     break
