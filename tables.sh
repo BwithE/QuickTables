@@ -119,7 +119,7 @@ if [ "$table" = "5" ]; then
     echo "##############################################"
     read -p "Port: " port
     echo "##############################################"
-    read -p "Forwarding Destination IP: " fdest
+    read -p "Forwarding Facing IP: " fdest
     echo "##############################################"
     read -p "Forwarding Port: " fport
 
